@@ -56,3 +56,4 @@ set backspace=indent,eol,start " allow backspacing over the start of insert; CTR
 set wildignore=*/selenium/*,*/vendor/*,*/runtime/* " To exclude those dirs from CtrlP search
 
 set hlsearch
+set incsearch
