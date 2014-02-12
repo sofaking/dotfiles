@@ -57,3 +57,7 @@ set wildignore=*/selenium/*,*/vendor/*,*/runtime/* " To exclude those dirs from 
 
 set hlsearch
 set incsearch
+
+set history=1000
+
+set splitbelow
