@@ -62,3 +62,7 @@ let g:ctrlp_regexp = 1
 
 set encoding=utf-8
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+
+set history=1000
+
+set splitbelow
