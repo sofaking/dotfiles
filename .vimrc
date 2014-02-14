@@ -57,3 +57,8 @@ set wildignore=*/selenium/*,*/vendor/*,*/runtime/* " To exclude those dirs from 
 
 set hlsearch
 set incsearch
+
+let g:ctrlp_regexp = 1
+
+set encoding=utf-8
+set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
