@@ -36,13 +36,14 @@ nmap <leader>ve :edit $MYVIMRC<CR>   " Edit vimrc
 nmap <leader>vs :source $MYVIMRC<CR> " Take vimrc into use
 nmap <leader>n :nohlsearch<CR>       " Stop highliting search word
 nmap <leader>p Obinding.pry<C-C>^    " Insert 'binding.pry' above current line
-nmap <leader>P Ibinding.pry<C-C>^    " Insert 'binding.pry' above current line
-nmap <leader>t O@petran<C-c>==       " Insert my tag into line before
+nmap <leader>t O@petran<C-c>==h      " Insert my tag into line before
+nmap <leader>a :Ag!<C-R><C-W><CR>    " Search for word under cursor with silver searcher
+nmap <leader>c :!ctags -R --exclude=runtime .<CR>    " Insert my tag into line before
  
 command! W w " Finally, :W won't be showing errors anymore
 
-nnoremap <silent> <Space> :nohlsearch<CR> " clear the search buffer when hitting return
-"cnoremap <CR> :nohlsearch<CR>
+nnoremap <silent> <Space> :nohlsearch<CR>        " clear the search buffer when hitting return
+nnoremap <F5> :Dispatch rake features:petran<CR> " Hardcode cucumber for now
 
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
@@ -57,8 +58,11 @@ set wildignore=*/selenium/*,*/vendor/*,*/runtime/* " To exclude those dirs from 
 
 set hlsearch
 set incsearch
+set ignorecase
+set smartcase
 
 let g:ctrlp_regexp = 1
+let g:ctrlp_root_markers = ['Gemfile']
 
 set encoding=utf-8
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
@@ -66,3 +70,5 @@ set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNO
 set history=1000
 
 set splitbelow
+
+set showcmd
