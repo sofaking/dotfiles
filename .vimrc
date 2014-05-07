@@ -30,23 +30,45 @@ set visualbell " Disable bell on errors
 " Haha, mapleader is already \ by default
 " let mapleader = "\\"
 
-nmap <leader>l :set list!<CR>        " Shortcut to rapidly toggle `set list`
-nmap <leader>s :set spell!<CR>       " Toggle spellcheck
-nmap <leader>ve :edit $MYVIMRC<CR>   " Edit vimrc
-nmap <leader>vs :source $MYVIMRC<CR> " Take vimrc into use
-nmap <leader>n :nohlsearch<CR>       " Stop highliting search word
-nmap <leader>p Obinding.pry<C-C>^    " Insert 'binding.pry' above current line
-nmap <leader>t O@petran<C-c>==h      " Insert my tag into line before
-nmap <leader>a :Ag!<C-R><C-W><CR>    " Search for word under cursor with silver searcher
-nmap <leader>c :!ctags -R --exclude=runtime .<CR>    " Insert my tag into line before
- 
+" Shortcut to rapidly toggle `set list`
+nnoremap <leader>l :set list!<CR>
+" Toggle spellcheck
+nnoremap <leader>s :set spell!<CR>
+" Edit vimrc
+nnoremap <leader>ve :edit $MYVIMRC<CR>
+" Take vimrc into use
+nnoremap <leader>vs :source $MYVIMRC<CR>
+" Stop highliting search word
+nnoremap <leader>n :nohlsearch<CR>
+" Insert 'binding.pry' above current line
+nnoremap <leader>p Obinding.pry<C-C>^
+" Insert my tag into line before
+nnoremap <leader>t O@petran<C-c>==
+" Search for word under cursor with silver searcher
+nnoremap <leader>a :Ag!<C-R><C-W><CR>
+" Insert my tag into line before
+nnoremap <leader>c :!ctags -R --exclude=runtime .<CR>
+" Insert default PageObject block
+nnoremap <leader>po oon(Portal::) { \|page\| }<C-c>F:
+" Insert default PageObject block with do/end
+nnoremap <leader>pob oon(Portal::) do \|page\|<CR>end<C-c>k2f:
+" Insert default PageObject block with do/end
+nnoremap <leader>cd :cd %:p:h
+
 command! W w " Finally, :W won't be showing errors anymore
 
 nnoremap <silent> <Space> :nohlsearch<CR>        " clear the search buffer when hitting return
-nnoremap <F5> :Dispatch rake features:petran<CR> " Hardcode cucumber for now
+nnoremap <F5> :call SaveAndDispatch()<CR>        " Hardcode cucumber for now
+
+function! SaveAndDispatch()
+  exe 'wa'
+  exe 'Dispatch rake features:petran'
+endfunction
+
+set autowriteall
 
 " Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:▸\ ,eol:¬
+set listchars=tab:▸\ ,trail:~,eol:¬
 
 set hidden
 
@@ -72,3 +94,5 @@ set history=1000
 set splitbelow
 
 set showcmd
+
+autocmd BufRead *.rb set path+=. suffixesadd=.rb
