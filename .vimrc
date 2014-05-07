@@ -57,8 +57,10 @@ nnoremap <leader>cd :cd %:p:h
 
 command! W w " Finally, :W won't be showing errors anymore
 
-nnoremap <silent> <Space> :nohlsearch<CR>        " clear the search buffer when hitting return
-nnoremap <F5> :call SaveAndDispatch()<CR>        " Hardcode cucumber for now
+" clear the search buffer when hitting return
+nnoremap <silent> <Space> :nohlsearch<CR>
+" Hardcode cucumber for now
+nnoremap <F5> :call SaveAndDispatch()<CR>
 
 function! SaveAndDispatch()
   exe 'wa'
