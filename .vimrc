@@ -49,22 +49,30 @@ nnoremap <leader>a :Ag!<C-R><C-W><CR>
 " Insert my tag into line before
 nnoremap <leader>c :!ctags -R --exclude=runtime .<CR>
 " Insert default PageObject block
-nnoremap <leader>po oon(Portal::) { \|page\| }<C-c>F:
+nnoremap <leader>po oon(Portal::) { \|page\| }<C-c>F:a
 " Insert default PageObject block with do/end
 nnoremap <leader>pob oon(Portal::) do \|page\|<CR>end<C-c>k2f:
 " Insert default PageObject block with do/end
-nnoremap <leader>cd :cd %:p:h
+nnoremap <leader>cd :cd %:p:h<CR>
+" Run Rubocop
+nnoremap <silent> <leader>r :call SaveAndRun('RuboCop')<CR>
+" Figitive mappings
+nn <silent> <leader>gplr :Git pull --rebase<CR>
+nn <silent> <leader>gpsh :Git push<CR>
+nn <silent> <leader>gst :Gst<CR>
 
-command! W w " Finally, :W won't be showing errors anymore
+
+" Capital Y working more logical now
+map Y y$
 
 " clear the search buffer when hitting return
 nnoremap <silent> <Space> :nohlsearch<CR>
 " Hardcode cucumber for now
-nnoremap <F5> :call SaveAndDispatch()<CR>
+nnoremap <F5> :call SaveAndRun('Dispatch rake features:petran')<CR>
 
-function! SaveAndDispatch()
-  exe 'wa'
-  exe 'Dispatch rake features:petran'
+function! SaveAndRun(command)
+  exe 'wa' 
+  exe a:command
 endfunction
 
 set autowriteall
@@ -84,6 +92,7 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+"set nowrapscan
 
 let g:ctrlp_regexp = 1
 let g:ctrlp_root_markers = ['Gemfile']
@@ -98,3 +107,20 @@ set splitbelow
 set showcmd
 
 autocmd BufRead *.rb set path+=. suffixesadd=.rb
+
+set foldmethod=syntax
+
+" Don't screw up folds when inserting text that might affect them, until
+" leaving insert mode. Foldmethod is local to the window.
+autocmd InsertEnter * let w:last_fdm=&foldmethod | setlocal foldmethod=manual
+autocmd InsertLeave * let &l:foldmethod=w:last_fdm
+
+" To show carriage return chars use:
+" :e ++ff=unix
+
+let g:dbext_default_type   = 'MySQL'
+let g:dbext_default_user   = 'root'
+
+
+" Abbreviations
+ca Wq wq
