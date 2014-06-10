@@ -65,6 +65,9 @@ nn <silent> <leader>gst :Gst<CR>
 " Capital Y working more logical now
 map Y y$
 
+" Just in case. Like the idea but not sure if it's needed for me
+" inoremap <CR> <C-G>u<CR>
+
 " clear the search buffer when hitting return
 nnoremap <silent> <Space> :nohlsearch<CR>
 " Hardcode cucumber for now
